@@ -13,7 +13,7 @@ public class Course {
     private String courseCode;
     private String courseName;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "course")
+    @OneToMany(mappedBy = "course")
     private List<Section> sections;
 
     public Course() {

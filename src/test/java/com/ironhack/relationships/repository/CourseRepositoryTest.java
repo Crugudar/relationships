@@ -45,7 +45,7 @@ public class CourseRepositoryTest {
 
     @Test
     public void findById_ValidId_Course() {
-        Optional<Course> course = courseRepository.findById("CS101");
+        Optional<Course> course = courseRepository.findByIdWithSections("CS101");
 
         if (course.isPresent()) {
             assertEquals("Pociones", course.get().getCourseName());
@@ -55,7 +55,5 @@ public class CourseRepositoryTest {
         }
 
     }
-
-
 
 }

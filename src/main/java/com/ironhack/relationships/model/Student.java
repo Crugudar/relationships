@@ -1,6 +1,7 @@
 package com.ironhack.relationships.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -9,9 +10,17 @@ public class Student {
     private Integer id;
     private String firstName;
     private String lastName;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "house_assignment_id")
     private HouseAssignment houseAssignment;
+
+    @ManyToMany
+    @JoinTable(
+            name = "students_casts_spells",
+            joinColumns = { @JoinColumn(name = "student_id") },
+            inverseJoinColumns = { @JoinColumn(name = "spell_id") }
+    )
+    private List<Spell> spells;
 
     public Student() {
     }
@@ -52,5 +61,13 @@ public class Student {
 
     public void setHouseAssignment(HouseAssignment houseAssignment) {
         this.houseAssignment = houseAssignment;
+    }
+
+    public List<Spell> getSpells() {
+        return spells;
+    }
+
+    public void setSpells(List<Spell> spells) {
+        this.spells = spells;
     }
 }
